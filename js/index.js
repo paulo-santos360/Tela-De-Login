@@ -5,6 +5,13 @@ class Validator {
 
   // iniciar a validação de todos os campos
   validate(form) {
+
+    // resgata todas as validações
+    let currentValidations = document.querySelectorAll('form');
+
+    if(currentValidations.length > 0){
+        this.cleanValidations(currentValidations);
+    }
     //pegar os input
     let inputs = form.getElementsByTagName("input");
 
@@ -66,6 +73,8 @@ class Validator {
 
     inputParent.appendChild(template);
   }
+  // limpa as validações da tela
+  cleanValidations(validations)
 }
 
 let form = document.getElementById("register-form");
