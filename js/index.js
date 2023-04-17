@@ -1,24 +1,30 @@
- class Validator {
+class Validator {
   constructor() {
     this.validations = [
-       // 'data-min-length',
-    ]
+      // 'data-min-length',
+    ];
   }
 
-   // iniciar a validação de todos os campos
-   validate(form) {
+  // iniciar a validação de todos os campos
+  validate(form) {
     //pegar os input
-    let inputs = form.getAttributeNames('input');
+    let inputs = form.getElementsByTagName('input');
 
-     //console.log(inputs);
+    //console.log(inputs);
 
     // transformo uma HTMLCollection -> array
     let inputsArray = [...inputs];
 
-     //console.log(inputsArray);
-   }
- }
-  /*
+    //console.log(inputsArray);
+
+    // loop nos input e validação meadiante ao que for encontrado
+    inputsArray.forEach(function(input) {
+        console.log(input);
+    });
+    
+  }
+}
+/*
  
 
    
@@ -27,8 +33,7 @@
 
    
 
-    // loop nos input e validação meadiante ao que for encontrado
-    inputsArray.forEach(function(input) {
+    
         
         // fazer validação de acordo com o atributo do input
       for(let i = 0; this.validations.length > i; i++) {
@@ -84,8 +89,7 @@ let submit = document.getElementById("btn-submit");
 let validator = new Validator();
 
 // evento que dispara as validações
-submit.addEventListener('click', function(e) {
-
+submit.addEventListener("click", function (e) {
   e.preventDefault();
 
   validator.validate(form);
