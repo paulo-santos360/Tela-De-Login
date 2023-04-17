@@ -75,3 +75,31 @@ input{
     font-size: .9rem;
     margin-bottom: 40px;
 }
+
+input:focus{
+    border-color: #E60084;
+}
+
+input[type="submit"]{
+    background-color: #E60084;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#agreement{
+    margin-right: 5px;
+}
+
+#agreement, #agreement-label{
+    display: inline-block;
+    width: auto;
+}
+
+/* validação */
+.erro-validation{
+    color: #ff1a1a;
+    position: absolute;
+}
