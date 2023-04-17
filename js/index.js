@@ -21,58 +21,42 @@ class Validator {
       for (let i = 0; this.validations.length > i; i++) {
         // verificar se a validação existe no input
         if (input.getAttribute(this.validations[i]) != null) {
+          // console.log(input.getAttribute(this.validations[i]));
+          // console.log('achou validação');
 
-         // console.log(input.getAttribute(this.validations[i]));
-         // console.log('achou validação');
+          // limpa string para saber o método
+          let method = this.validations[i]
+            .replace("data-", "")
+            .replace("-", "");
+
+          // valor do input
+          let value = input.getAttribute(this.validations[i]);
+
+          // invoca o método
+          this[method](input, value);
         }
       }
     }, this);
   }
-}
-/*
- 
 
-   
+  // verifica se um input tem um número minimo de caracteres
+  minlength(input, minValue) {
+    // console.log(input);
+    // console.log(minValue);
 
-    
+    let inputLength = input.value.length;
 
-   
+    let errorMessage = `O campo precisa ter pelo menos ${minValue} caracteres`;
 
-    
-        
-   
-
-          // limpa string para saber o método
-          let method = this.validations[i].replace("data-", "").replace("-", "");
-
-          // valor do input
-          let value = input.getAttribute(this.validations[i])
-
-          // invoca o método
-          this[method](input,value);
-
-        
-
-    
+    if (inputLength < minValue) {
+      //console.log(errorMessage);
+      this.printMessage(input, errorMessage);
+    }
   }
+  //metodo para imprimir msg de erro na tela
+  printMessage(input, msg) {
 
-
-// verifica se um input tem um número minimo de caracteres
-minlength(input, minValue){
-
-   let inputLength = input.value.length;
-
-   let errorMessage = `O campo precisa ter pelo menos ${minValue} caracteres`;
-
-   if(inputLength < minValue){
-    this.printMessage(input, errorMessage)
-   }
-}
-
-//metodo para imprimir msg de erro na tela
-printMessage(input, msg){
-
-    let template = document.querySelector('.erro-validation').cloneNode(true);
+    let template = document.querySelector('.error-validation').cloneNode(true);
 
     template.textContent = msg;
 
@@ -81,9 +65,8 @@ printMessage(input, msg){
     template.classList.remove('template');
 
     inputParent.appendChild(template);
+  }
 }
-
-} */
 
 let form = document.getElementById("register-form");
 let submit = document.getElementById("btn-submit");
