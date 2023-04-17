@@ -1,14 +1,12 @@
 class Validator {
   constructor() {
-    this.validations = [
-      // 'data-min-length',
-    ];
+    this.validations = ["data-min-length"];
   }
 
   // iniciar a validação de todos os campos
   validate(form) {
     //pegar os input
-    let inputs = form.getElementsByTagName('input');
+    let inputs = form.getElementsByTagName("input");
 
     //console.log(inputs);
 
@@ -18,10 +16,17 @@ class Validator {
     //console.log(inputsArray);
 
     // loop nos input e validação meadiante ao que for encontrado
-    inputsArray.forEach(function(input) {
-        console.log(input);
-    });
-    
+    inputsArray.forEach(function (input) {
+      // fazer validação de acordo com o atributo do input
+      for (let i = 0; this.validations.length > i; i++) {
+        // verificar se a validação existe no input
+        if (input.getAttribute(this.validations[i]) != null) {
+
+         // console.log(input.getAttribute(this.validations[i]));
+         // console.log('achou validação');
+        }
+      }
+    }, this);
   }
 }
 /*
@@ -35,9 +40,7 @@ class Validator {
 
     
         
-        // fazer validação de acordo com o atributo do input
-      for(let i = 0; this.validations.length > i; i++) {
-        if(input.getAttribute(this.validations[i]) != null) {
+   
 
           // limpa string para saber o método
           let method = this.validations[i].replace("data-", "").replace("-", "");
@@ -48,10 +51,9 @@ class Validator {
           // invoca o método
           this[method](input,value);
 
-        }
-      }
+        
 
-    }, this);
+    
   }
 
 
