@@ -3,4 +3,27 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #323232;
+    border: none;
+}
+
+input, label{
+    display: block;
+    width: 100%;
+}
+
+input:focus, label:focus{
+    outline: none;
+}
+
+a{
+    color: #E60084;
+}
+
+body{
+    padding-top: 5vh;/* view height -> 5% da tela*/
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    background-position: -150px;
 }
