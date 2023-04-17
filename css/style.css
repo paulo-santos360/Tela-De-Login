@@ -102,4 +102,10 @@ input[type="submit"]{
 .erro-validation{
     color: #ff1a1a;
     position: absolute;
+    top: 57px;
+    font-size: 8rem;
+}
+
+.template{
+    display: none;
 }
