@@ -5,6 +5,7 @@ class Validator {
             'data-min-length',
             'data-max-length',
             'data-email-validate',
+            `data-only-letters`,
         ];
     }
 
@@ -73,8 +74,16 @@ class Validator {
   emailvalidate(input){
 
     // email@email.com -> email@email.com.br
-    let re = /\S+@\.S+\.S+/;
-    
+    let re = /\S+@\S+\.\S+/;
+
+    let email = input.value;
+
+    let errorMessage = `Insira um e-mail no padrão paulo@email.com`;
+
+    if(!re.test(email)){
+        this.printMessage(input, errorMessage);
+    }
+
   }
 
   // verifica se um input passou do limite de caracteres
@@ -91,6 +100,19 @@ class Validator {
 
   }
 
+  // valida se o campo tem apenas letras
+  onlyletters(input){
+
+    let re = /^[A-Za-z]+$/;
+
+    let inputValue = input.value;
+
+    let errorMessage = `Este campo não aceita números nem caracteres especiais`;
+
+    if(!re.test(inputValue)){
+        this.printMessage(input, errorMessage);
+    }
+  }
 
   //metodo para imprimir msg de erro na tela
   printMessage(input, msg) {
