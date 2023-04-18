@@ -26,11 +26,22 @@ class Validator {
          // verificar se a validação existe no input
          if (input.getAttribute(this.validations[i]) != null) {
             // console.log(input.getAttribute(this.validations[i]));
-            console.log('achou validação');
+            //console.log('achou validação');
+
          }
         }
    }, this);
   } 
+
+ // verifica se um input tem um número minimo de caracteres
+  minlength() {//input, minValue
+
+    // limpa string para saber o método
+    let method = this.validations[i].replace('data-', '').replace('-', '');
+
+    // valor do input
+    let value = input.getAttribute(this.validations[i]); 
+  }
 }
 
 let form = document.getElementById("register-form");
@@ -70,26 +81,11 @@ submit.addEventListener("click", function (e) {
       '
       //'data-max-length','data-required',
        // fazer validação de acordo com o atributo do input
-    
-
-       
-         
-
-           // limpa string para saber o método
-          let method = this.validations[i]
-          .replace('data-', '')
-          .replace('-', '');
-
-           // valor do input
-           let value = input.getAttribute(this.validations[i]);        
-         
-   
-  
-
+                 
  */
 
-  /*  // verifica se um input tem um número minimo de caracteres
-   minlength(input, minValue) {
+  /* 
+  
     
     // console.log(minValue);
 
@@ -101,7 +97,7 @@ submit.addEventListener("click", function (e) {
       //console.log(errorMessage);
       this.printMessage(input, errorMessage);
     }
-  } */
+  */
 
 /*   // resgata todas as validações
     let currentValidations = document.querySelectorAll("form");
