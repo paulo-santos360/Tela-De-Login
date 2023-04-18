@@ -10,8 +10,12 @@
   
   input, label {
     display: block;
+/*     outline: none;
+ */    width: 100%;
+  }
+
+  input:focus, label:focus{
     outline: none;
-    width: 100%;
   }
   
   a {
