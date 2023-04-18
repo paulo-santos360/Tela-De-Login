@@ -1,37 +1,36 @@
 class Validator {
-  constructor() {
-    this.validations = [
-      'data-min-length',
-      //'data-max-length','data-required',
-    ];
-  }
-  // iniciar a validação de todos os campos
-  validate(form) {
-    
-  //pegar os input
-  let inputs = form.getElementsByTagName("input");
-
-  // console.log(inputs);
-
-  // transformo uma HTMLCollection -> array
-  let inputsArray = [...inputs];
-
-  // console.log(inputsArray);
-
-   // loop nos input e validação meadiante ao que for encontrado
-   inputsArray.forEach(function (input) {
-
-       // fazer validação de acordo com o atributo do input
-       for (let i = 0; this.validations.length > i; i++) {
-
-        // verificar se a validação existe no input
-        if (input.getAttribute(this.validations[i]) != null) {
-            console.log(input.getAttribute(this.validations[i]));
-            console.log('achou validação');
-       }
+    constructor() {
+        this.validations = [
+            'data-min-length',
+        ];
     }
+
+     // iniciar a validação de todos os campos
+  validate(form) {
+
+     //pegar os input
+     let inputs = form.getElementsByTagName("input");
+
+     //console.log(inputs); 
+
+     // transformo uma HTMLCollection -> array
+     let inputsArray = [...inputs];
+
+     //console.log(inputsArray);
+     // loop nos input e validação meadiante ao que for encontrado
+    inputsArray.forEach(function(input) {
+
+    //console.log(input);
+
+    for (let i = 0; this.validations.length > i; i++) {
+         // verificar se a validação existe no input
+         if (input.getAttribute(this.validations[i]) != null) {
+            // console.log(input.getAttribute(this.validations[i]));
+            console.log('achou validação');
+         }
+        }
    }, this);
-  }
+  } 
 }
 
 let form = document.getElementById("register-form");
@@ -41,42 +40,57 @@ let validator = new Validator();
 
 // evento que dispara as validações
 submit.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  validator.validate(form);
-  //console.log('funcionou');
-
+    e.preventDefault();
+  
+    validator.validate(form);
+    //console.log('funcionou');
+  
 });
 
-/*   // resgata todas as validações
-    let currentValidations = document.querySelectorAll("form");
 
-    if (currentValidations.length > 0) {
-      this.cleanValidations(currentValidations);
-    }
-   
-   
-   
-        
 
-          // limpa string para saber o método
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+      '
+      //'data-max-length','data-required',
+       // fazer validação de acordo com o atributo do input
+    
+
+       
+         
+
+           // limpa string para saber o método
           let method = this.validations[i]
-            .replace("data-", "")
-            .replace("-", "");
+          .replace('data-', '')
+          .replace('-', '');
 
-          // valor do input
-          let value = input.getAttribute(this.validations[i]);
-
-          // invoca o método
-          this[method](input, value);
-        }
-      }
+           // valor do input
+           let value = input.getAttribute(this.validations[i]);        
+         
    
-  }
+  
 
-  // verifica se um input tem um número minimo de caracteres
-  minlength(input, minValue) {
-    // console.log(input);
+ */
+
+  /*  // verifica se um input tem um número minimo de caracteres
+   minlength(input, minValue) {
+    
     // console.log(minValue);
 
     let inputLength = input.value.length;
@@ -87,6 +101,17 @@ submit.addEventListener("click", function (e) {
       //console.log(errorMessage);
       this.printMessage(input, errorMessage);
     }
+  } */
+
+/*   // resgata todas as validações
+    let currentValidations = document.querySelectorAll("form");
+
+    if (currentValidations.length > 0) {
+      this.cleanValidations(currentValidations);
+    }
+   
+          // invoca o método
+           this[method](input, value);
   }
 
   // verifica se um input passou do limite de caracteres
