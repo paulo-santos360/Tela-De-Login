@@ -1,12 +1,22 @@
 class Validator {
     constructor() {
         this.validations = [
+            'data-required',
             'data-min-length',
+            'data-max-length',
+            'data-email-validate',
         ];
     }
 
      // iniciar a validação de todos os campos
   validate(form) {
+
+     // resgata todas as validações
+     let currentValidations = document.querySelectorAll('form .error-validation');
+
+     if(currentValidations.length > 0) {
+        this.cleanValidations(currentValidations);
+    }
 
      //pegar os input
      let inputs = form.getElementsByTagName("input");
@@ -28,19 +38,99 @@ class Validator {
             // console.log(input.getAttribute(this.validations[i]));
             //console.log('achou validação');
 
-         }
+        // limpa string para saber o método
+        let method = this.validations[i].replace('data-', '').replace('-', '');
+
+        // valor do input
+        let value = input.getAttribute(this.validations[i]); 
+
+        // invoca o método
+        this[method](input, value);
+
         }
+    }
+
    }, this);
   } 
 
  // verifica se um input tem um número minimo de caracteres
-  minlength() {//input, minValue
+  minlength(input, minValue) {
+    //console.log(input);
+    //console.log(minValue);
 
-    // limpa string para saber o método
-    let method = this.validations[i].replace('data-', '').replace('-', '');
+    let inputLength = input.value.length;
 
-    // valor do input
-    let value = input.getAttribute(this.validations[i]); 
+    let errorMessage = `O campo precisa ter pelo menos ${minValue} caracteres`;
+
+    if (inputLength < minValue) {
+        //console.log(errorMessage);
+        this.printMessage(input, errorMessage);
+    }
+
+  }
+
+  //valida emails
+  emailvalidate(input){
+
+    // email@email.com -> email@email.com.br
+    let re = /\S+@\.S+\.S+/;
+    
+  }
+
+  // verifica se um input passou do limite de caracteres
+  maxlength(input, maxValue){
+
+    let inputLength = input.value.length;
+
+    let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
+
+    if (inputLength > maxValue) {
+      //console.log(errorMessage);
+      this.printMessage(input, errorMessage);
+    }
+
+  }
+
+
+  //metodo para imprimir msg de erro na tela
+  printMessage(input, msg) {
+
+    // quantidade de erros
+    let errorsQty = input.parentNode.querySelector('.error-validation');
+
+    if(errorsQty === null) {
+
+        let template = document.querySelector(".error-validation").cloneNode(true);
+
+        template.textContent = msg;
+    
+        let inputParent = input.parentNode;
+    
+        template.classList.remove("template");
+    
+        inputParent.appendChild(template);
+
+    }
+  
+
+  }
+
+   // verifica se o input é requerido
+   required(input){
+
+    let inputValue = input.value;
+
+    if(inputValue === ''){
+
+        let errorMessage = `Este campo é obrigatório`;
+
+        this.printMessage(input, errorMessage);
+    }
+
+   }
+  // limpa as validações da tela
+  cleanValidations(validations) {
+    validations.forEach((el) => el.remove());
   }
 }
 
@@ -59,97 +149,3 @@ submit.addEventListener("click", function (e) {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-      '
-      //'data-max-length','data-required',
-       // fazer validação de acordo com o atributo do input
-                 
- */
-
-  /* 
-  
-    
-    // console.log(minValue);
-
-    let inputLength = input.value.length;
-
-    let errorMessage = `O campo precisa ter pelo menos ${minValue} caracteres`;
-
-    if (inputLength < minValue) {
-      //console.log(errorMessage);
-      this.printMessage(input, errorMessage);
-    }
-  */
-
-/*   // resgata todas as validações
-    let currentValidations = document.querySelectorAll("form");
-
-    if (currentValidations.length > 0) {
-      this.cleanValidations(currentValidations);
-    }
-   
-          // invoca o método
-           this[method](input, value);
-  }
-
-  // verifica se um input passou do limite de caracteres
-  maxlength(input, maxValue){
-    
-    let inputLength = input.value.length;
-
-    let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
-
-    if (inputLength > maxValue) {
-      //console.log(errorMessage);
-      this.printMessage(input, errorMessage);
-    }
-  }
-
-  //metodo para imprimir msg de erro na tela
-  printMessage(input, msg) {
-    let template = document.querySelector(".error-validation").cloneNode(true);
-
-    template.textContent = msg;
-
-    let inputParent = input.parentNode;
-
-    template.classList.remove("template");
-
-    inputParent.appendChild(template);
-  }
-
-  // verifica se o input é requerido
-  required(input){
-
-    let inputValue = input.value;
-
-    if(inputValue === ''){
-        let errorMessage = `Este campo é obrigatório`;
-
-        this.printMessage(input, errorMessage);
-    }
-
-  }
-  // limpa as validações da tela
-  cleanValidations(validations) {
-    validations.forEach((el) => el.remove());
-  }
-} */
