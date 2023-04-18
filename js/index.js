@@ -116,8 +116,59 @@ class Validator {
     }
   }
 
-  //metodo para imprimir msg de erro na tela
-  printMessage(input, msg) {
+ 
+
+   // verifica se o input é requerido
+   required(input){
+
+    let inputValue = input.value;
+
+    if(inputValue === ''){
+
+        let errorMessage = `Este campo é obrigatório`;
+
+        this.printMessage(input, errorMessage);
+    }
+
+   }
+ // verifica se dois campos são iguais
+ equal(input, inputName){
+
+    let inputToCompare = document.getElementsByClassName(inputName)[0];
+
+    let errorMessage = `Este campo precisa estar igual ao ${inputName}`;
+
+    if(input.value != inputToCompare.value){
+        this.printMessage(input, errorMessage);
+    }
+
+   }
+    // valida o campo de senha
+    passwordvalidate(input){
+
+        // explodir string em um array
+        let charArr = input.value.split("");
+    
+        let uppercases = 0;
+        let numbers = 0;
+    
+        for(let i = 0; charArr.length > i; i++){
+            if(charArr[i] === charArr[i].ToUpperCase() && isNaN(parseInt(charArr[i]))){
+                uppercases++;
+            }else if(!isNaN(parseInt(charArr[i]))){
+                numbers++;
+            }
+        }
+    
+        if(uppercases === 0 || numbers === 0){
+            let errorMessage = `A senha precisa de um caractere maiúsculo e um número`;
+    
+            this.printMessage(input, errorMessage);
+        }
+       }
+       
+   //metodo para imprimir msg de erro na tela
+   printMessage(input, msg) {
 
     // quantidade de erros
     let errorsQty = input.parentNode.querySelector('.error-validation');
@@ -138,34 +189,6 @@ class Validator {
   
 
   }
-
-   // verifica se o input é requerido
-   required(input){
-
-    let inputValue = input.value;
-
-    if(inputValue === ''){
-
-        let errorMessage = `Este campo é obrigatório`;
-
-        this.printMessage(input, errorMessage);
-    }
-
-   }
-
-   // verifica se dois campos são iguais
-   equal(input, inputName){
-
-    let inputToCompare = document.getElementsByClassName(inputName)[0];
-
-    let errorMessage = `Este campo precisa estar igual ao ${inputName}`;
-
-    if(input.value != inputToCompare.value){
-        this.printMessage(input, errorMessage);
-    }
-
-   }
-
 
   // limpa as validações da tela
   cleanValidations(validations) {
