@@ -7,6 +7,7 @@ class Validator {
             'data-email-validate',
             `data-only-letters`,
             `data-equal`,
+            `data-password-validate`,
         ];
     }
 
