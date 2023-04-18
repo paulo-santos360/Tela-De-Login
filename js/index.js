@@ -1,27 +1,47 @@
 class Validator {
   constructor() {
-    this.validations = ['data-min-length','data-max-length','data-required',
-];
+    this.validations = [
+      //'data-min-length','data-max-length','data-required',
+    ];
   }
-
   // iniciar a validação de todos os campos
   validate(form) {
-    // resgata todas as validações
+    
+  //pegar os input
+  let inputs = form.getElementsByTagName("input");
+
+  // console.log(inputs);
+
+  // transformo uma HTMLCollection -> array
+  let inputsArray = [...inputs];
+
+  // console.log(inputsArray);
+
+
+  }
+}
+
+let form = document.getElementById("register-form");
+let submit = document.getElementById("btn-submit");
+
+let validator = new Validator();
+
+// evento que dispara as validações
+submit.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  validator.validate(form);
+  //console.log('funcionou');
+
+});
+
+/*   // resgata todas as validações
     let currentValidations = document.querySelectorAll("form");
 
     if (currentValidations.length > 0) {
       this.cleanValidations(currentValidations);
     }
-    //pegar os input
-    let inputs = form.getElementsByTagName("input");
-
-    //console.log(inputs);
-
-    // transformo uma HTMLCollection -> array
-    let inputsArray = [...inputs];
-
-    //console.log(inputsArray);
-
+   
     // loop nos input e validação meadiante ao que for encontrado
     inputsArray.forEach(function (input) {
       // fazer validação de acordo com o atributo do input
@@ -103,17 +123,4 @@ class Validator {
   cleanValidations(validations) {
     validations.forEach((el) => el.remove());
   }
-}
-
-let form = document.getElementById("register-form");
-let submit = document.getElementById("btn-submit");
-
-let validator = new Validator();
-
-// evento que dispara as validações
-submit.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  validator.validate(form);
-  //console.log('funcionou');
-});
+} */
