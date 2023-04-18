@@ -6,6 +6,7 @@ class Validator {
             'data-max-length',
             'data-email-validate',
             `data-only-letters`,
+            `data-equal`,
         ];
     }
 
@@ -150,6 +151,21 @@ class Validator {
     }
 
    }
+
+   // verifica se dois campos são iguais
+   equal(input, inputName){
+
+    let inputToCompare = document.getElementsByClassName(inputName)[0];
+
+    let errorMessage = `Este campo precisa estar igual ao ${inputName}`;
+
+    if(input.value != inputToCompare.value){
+        this.printMessage(input, errorMessage);
+    }
+
+   }
+
+
   // limpa as validações da tela
   cleanValidations(validations) {
     validations.forEach((el) => el.remove());
