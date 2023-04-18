@@ -1,7 +1,8 @@
 class Validator {
   constructor() {
     this.validations = [
-      //'data-min-length','data-max-length','data-required',
+      'data-min-length',
+      //'data-max-length','data-required',
     ];
   }
   // iniciar a validação de todos os campos
@@ -17,7 +18,19 @@ class Validator {
 
   // console.log(inputsArray);
 
+   // loop nos input e validação meadiante ao que for encontrado
+   inputsArray.forEach(function (input) {
 
+       // fazer validação de acordo com o atributo do input
+       for (let i = 0; this.validations.length > i; i++) {
+
+        // verificar se a validação existe no input
+        if (input.getAttribute(this.validations[i]) != null) {
+            console.log(input.getAttribute(this.validations[i]));
+            console.log('achou validação');
+       }
+    }
+   }, this);
   }
 }
 
@@ -42,14 +55,9 @@ submit.addEventListener("click", function (e) {
       this.cleanValidations(currentValidations);
     }
    
-    // loop nos input e validação meadiante ao que for encontrado
-    inputsArray.forEach(function (input) {
-      // fazer validação de acordo com o atributo do input
-      for (let i = 0; this.validations.length > i; i++) {
-        // verificar se a validação existe no input
-        if (input.getAttribute(this.validations[i]) != null) {
-          // console.log(input.getAttribute(this.validations[i]));
-          // console.log('achou validação');
+   
+   
+        
 
           // limpa string para saber o método
           let method = this.validations[i]
@@ -63,7 +71,7 @@ submit.addEventListener("click", function (e) {
           this[method](input, value);
         }
       }
-    }, this);
+   
   }
 
   // verifica se um input tem um número minimo de caracteres
