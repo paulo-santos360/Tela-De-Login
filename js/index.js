@@ -72,6 +72,21 @@ class Validator {
 
   }
 
+
+  // verifica se um input passou do limite de caracteres
+  maxlength(input, maxValue){
+
+    let inputLength = input.value.length;
+
+    let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
+
+    if (inputLength > maxValue) {
+      //console.log(errorMessage);
+      this.printMessage(input, errorMessage);
+    }
+
+  }
+
   //valida emails
   emailvalidate(input){
 
@@ -84,20 +99,6 @@ class Validator {
 
     if(!re.test(email)){
         this.printMessage(input, errorMessage);
-    }
-
-  }
-
-  // verifica se um input passou do limite de caracteres
-  maxlength(input, maxValue){
-
-    let inputLength = input.value.length;
-
-    let errorMessage = `O campo precisa ter menos que ${maxValue} caracteres`;
-
-    if (inputLength > maxValue) {
-      //console.log(errorMessage);
-      this.printMessage(input, errorMessage);
     }
 
   }
@@ -175,13 +176,13 @@ class Validator {
 
     if(errorsQty === null) {
 
-        let template = document.querySelector(".error-validation").cloneNode(true);
+        let template = document.querySelector('.error-validation').cloneNode(true);
 
         template.textContent = msg;
     
         let inputParent = input.parentNode;
     
-        template.classList.remove("template");
+        template.classList.remove('template');
     
         inputParent.appendChild(template);
 
@@ -194,6 +195,7 @@ class Validator {
   cleanValidations(validations) {
     validations.forEach((el) => el.remove());
   }
+
 }
 
 let form = document.getElementById("register-form");
