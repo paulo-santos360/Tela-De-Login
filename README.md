@@ -31,5 +31,3 @@ Sinta-se à vontade para contribuir com melhorias ou recursos adicionais para es
 ## Registre-se Agora! 🖊️
 
 Aproveite este formulário interativo para capturar informações de registro de forma fácil e eficaz. Garanta que seus usuários tenham uma experiência suave e livre de erros.
-
-Sinta-se à vontade para copiar e colar este modelo no seu README.md no GitHub e personalizar conforme necessário. Não se esqueça de substituir "seu-usuario" pelo seu nome de usuário ou organização no GitHub e adicionar o link direto para o vídeo do projeto em "URL_DO_SEU_VIDEO". 📋✅🚀
